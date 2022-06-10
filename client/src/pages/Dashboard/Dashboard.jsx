@@ -11,8 +11,8 @@ const Dashboard = () => {
         <div className={style.fon}>
 
             <div className={style.flex}>
-                <Cards icon={logo} cash={'100'} name={'Наличные'}/>
-                <Cards icon={logo2} cash={'200'} name={'Black'}/>
+                <Cards icon={logo} cash={'100'} name={'Наличные'} color={'red'}/>
+                <Cards icon={logo2} cash={'200'} name={'Black'} color={'blue'}/>
                 <button className={style.button}>Добавить счет </button>
              </div>
             <div className={style.flex}>
