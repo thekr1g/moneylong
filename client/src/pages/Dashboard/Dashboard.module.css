@@ -1,0 +1,21 @@
+.flex{
+    display: flex;
+}
+.fon{
+    background-color: #EFF0F2;
+    left: 0px;
+    width: 100%;
+}
+.button{
+    display: flex;
+    font-family: 'Poiret One', cursive;
+    font-size: 15px;
+    background-color: #EFF0F2;
+    border-radius: 7px;
+    border: 2px dashed #282c34;
+    color: #282c34;
+    height: 60px;
+    width: 300px;
+    margin-left: 10px;
+    margin-top: 40px;
+}
