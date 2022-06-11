@@ -5,5 +5,6 @@ const router = new Router
 router.post('/',accountController.create)
 router.get('/', accountController.getAll)
 router.put('/', accountController.update)
+router.delete('/', accountController.delete)
 
 module.exports = router

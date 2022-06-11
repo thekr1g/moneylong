@@ -14,9 +14,14 @@ class AccountController {
     }
   }
 
-  async getAll(req, res) {
-    const accounts = await Account.findAll()
-    return res.json(accounts)
+  async getAll(req, res, next) {
+    try {
+      const accounts = await Account.findAll()
+      return res.json(accounts)
+    } catch (e) {
+      return next(ApiError.badRequest(e.message))
+    }
+
   }
 
   async update(req, res, next) {
@@ -41,6 +46,18 @@ class AccountController {
     } catch (e) {
       return next(ApiError.badRequest(e.message))
     }
+  }
+
+  async delete(req, res, next) {
+    try {
+      let {id} = req.query
+      await Account.destroy({where: {id}})
+      const accounts = await Account.findAll()
+      return res.json(accounts)
+    } catch (e) {
+      return next(ApiError.badRequest(e.message))
+    }
+
   }
 
 }
