@@ -16,7 +16,8 @@ class AccountController {
 
   async getAll(req, res, next) {
     try {
-      const accounts = await Account.findAll()
+      let {userId} = req.query
+      const accounts = await Account.findAll({where: {userId}})
       return res.json(accounts)
     } catch (e) {
       return next(ApiError.badRequest(e.message))

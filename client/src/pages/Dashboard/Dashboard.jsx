@@ -1,30 +1,61 @@
-import React from 'react';
-import Cards from "./Cards/Cards";
-import logo from "../../assets/banknotes.png";
-import logo2 from "../../assets/credit-cards.png";
-import logoadd from "../../assets/plus.png";
+import React, {useEffect, useState} from 'react';
+import Cards from '../../components/Cards/Cards';
+import logo from '../../assets/banknotes.png';
+import logo2 from '../../assets/credit-cards.png';
 import style from './Dashboard.module.css'
-import Panel from "./Panel/Panel";
+import Panel from './Panel/Panel';
+import AddButton from './AddButton/AddButton';
+import AddAccountModal from '../../components/Modals/AddAccountModal/AddAccountModal';
+import {fetchAccountType} from '../../http/accountTypeAPI';
+import Spinner from '../../components/Spinner/Spinner';
+import {useDispatch, useSelector} from 'react-redux';
+import {setAccountTypesAC} from '../../redux/accountTypeReducer';
+import {fetchAccounts} from '../../http/accountAPI';
+import {setAccountsAC} from '../../redux/accountReducer';
 
 const Dashboard = () => {
-    return (
-        <div className={style.fon}>
+  const user = useSelector(state => state.user.user)
+  const accounts = useSelector(state => state.account.accounts)
+  const [addAccountActive, setAddAccountActive] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
 
-            <div className={style.flex}>
-                <Cards icon={logo} cash={'100'} name={'Наличные'} color={'red'}/>
-                <Cards icon={logo2} cash={'200'} name={'Black'} color={'blue'}/>
-                <button className={style.button}>Добавить счет </button>
-             </div>
-            <div className={style.flex}>
-                <Panel name={'Тенденция баланса'}/>
-                <Panel name={'Движение средств'}/>
-                <Panel name={'Структура расходов'}/>
+  useEffect(() => {
+    fetchAccounts(user.id).then(data => {
+      dispatch(setAccountsAC(data))
+    })
+    fetchAccountType().then(data => {
+      dispatch(setAccountTypesAC(data))
+    }).finally(() => setLoading(false))
+  }, [])
 
-            </div>
+  if (loading) {
+    return <Spinner/>
+  }
 
-        </div>
 
-)
+  return (
+    <div className={style.fon}>
+      <AddAccountModal setActive={setAddAccountActive} active={addAccountActive}/>
+      <div className={style.flex}>
+        {
+          accounts.length === 0 ? null :
+            accounts.map(acc => (
+              <Cards key={acc.id} accountData={acc}/>
+              ))
+        }
+        <AddButton onClick={setAddAccountActive}/>
+      </div>
+      <div style={{display: 'flex'}} >
+        <Panel name={'Тенденция баланса'}/>
+        <Panel name={'Движение средств'}/>
+        <Panel name={'Структура расходов'}/>
+
+      </div>
+
+    </div>
+
+  )
     ;
 };
 

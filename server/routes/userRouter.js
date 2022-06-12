@@ -6,6 +6,5 @@ const auth = require('../middleware/authMiddleware')
 router.post('/registration', userController.registration)
 router.post('/login', userController.login)
 router.get('/auth', auth, userController.check)
-router.put('/updateImg', userController.updateImage)
 
 module.exports = router

@@ -11,10 +11,12 @@ import {
     SETTINGS_ROUTE,
     AUTH_ROUTE
 } from "../../utils/const";
+import profile from '../../assets/user.png'
+import Profile from './Profile/Profile';
 
 const Header = () => {
     return (
-        <div>
+        <div className={style.header}>
 
             <ul className={style.ul}>
                 <li className={style.li}>
@@ -32,12 +34,12 @@ const Header = () => {
                 <li className={style.li}>
                     <NavLink to={ANALYTICS_ROUTE} className={style.navLink}>Аналитика</NavLink>
                 </li>
-
-                <li className={style.li}>
-                    <button className={style.addpost}>+ Запись</button>
-                </li>
-
             </ul>
+          <div className={style.right}>
+            <button className={style.addPost}>+ Запись</button>
+            <Profile/>
+          </div>
+
             <div className={style.line}/>
         </div>
 
