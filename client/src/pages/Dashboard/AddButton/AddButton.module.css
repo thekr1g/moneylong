@@ -1,7 +1,8 @@
 .addButton {
   height: 60px;
   width: 320px;
-  font-family: 'Poiret One', cursive;
+  font-family: Roboto, serif;
+  font-weight: 300;
   font-size: 15px;
   border-radius: 7px;
   border: 2px dashed #a2b0c5;
@@ -18,5 +19,5 @@
 }
 
 .buttonName {
-  padding-top: 16px;
+  padding-top: 19px;
 }

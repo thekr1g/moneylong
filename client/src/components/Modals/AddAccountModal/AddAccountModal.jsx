@@ -3,10 +3,10 @@ import Modal from '../Modal/Modal';
 import style from './AddAccountModal.module.css'
 import {useDispatch, useSelector} from 'react-redux';
 import AccountTypes from './AccountTypes/AccountTypes';
-import {createAccount} from '../../../http/accountAPI';
+import {createAccount, updateAccount} from '../../../http/accountAPI';
 import {setAccountsAC} from '../../../redux/accountReducer';
 
-const AddAccountModal = ({active, setActive}) => {
+const AddAccountModal = ({active, setActive, isEdit, name, color, type, sum, accountId}) => {
 
   const user = useSelector(state => state.user.user)
   const colors = useSelector(state => state.account.colors)
@@ -37,19 +37,45 @@ const AddAccountModal = ({active, setActive}) => {
   }
 
   useEffect(() => {
-    setSelectedType(types[0])
-  }, [])
+    if (active === true) {
+      if (isEdit) {
+        setSelectedName(name)
+        setSelectedType(type)
+        colors.map(c => {
+          if (c.color === color){
+            setSelectedColor(c)
+          }
+        })
+        types.map(t => {
+          if (t.id === type.id) {
+            console.log('dsds')
+            setSelectedType(t)
+          }
+        })
+        setSelectedSum(sum)
+      } else {
+        setSelectedType(types[0])
+      }
+    }
+  }, [active])
 
   const onSaveClick = () => {
     if (selectedName === '' || selectedSum === '') {
       setLoginError(true)
       setErrorText('Пожалуйста заполните все поля')
     } else {
-      createAccount(selectedName, selectedColor.color, user.id, selectedSum, selectedType.id ).then(data => {
-        dispatch(setAccountsAC(data))
-        setActive(false)
-        clear()
-      })
+      if (isEdit) {
+        updateAccount(accountId, selectedName, selectedColor.color, selectedSum, selectedType.id).then(data => {
+          dispatch(setAccountsAC(data))
+          setActive(false)
+        })
+      } else {
+        createAccount(selectedName, selectedColor.color, user.id, selectedSum, selectedType.id ).then(data => {
+          dispatch(setAccountsAC(data))
+          setActive(false)
+          clear()
+        })
+      }
     }
   }
 
@@ -61,7 +87,7 @@ const AddAccountModal = ({active, setActive}) => {
   };
 
   return (
-    <Modal active={active} setActive={setActive} size={'small'} modalName={'Добавить счет'} clear={clear}>
+    <Modal active={active} setActive={setActive} size={'small'} modalName={isEdit ? 'Изменить счет' :'Добавить счет'} clear={isEdit ? null : clear}>
       <div className={style.modal}>
         <div className={style.form}>
           <div style={{display: 'flex', width: '100%', marginTop: '20px'}}>
@@ -101,7 +127,7 @@ const AddAccountModal = ({active, setActive}) => {
         </div>
         {loginError ? <div className={style.errorText}>{errorText}</div> : null}
 
-        <button className={style.saveButton} onClick={onSaveClick}>Сохранить</button>
+        <button className={style.saveButton} onClick={onSaveClick}>{isEdit ? 'Изменить' : 'Сохранить'}</button>
       </div>
     </Modal>
   );

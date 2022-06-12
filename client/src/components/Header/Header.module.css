@@ -16,16 +16,21 @@
 .li {
   margin-top: 10px;
   margin-right: 30px;
-  font-family: 'Poiret One', cursive;
+  font-family: 'Roboto', sans-serif;
   cursor: pointer;
-  opacity: 0.7;
+  /*opacity: 0.7;*/
+
   text-shadow: black;
-
-
 }
 
-.li:hover {
-  opacity: 1;
+.li a {
+  color: #7F8FA4;
+  font-weight: 500;
+}
+
+.li:hover a {
+  color: #282c34;
+  /*font-weight: 700;*/
 }
 
 .navLink {
@@ -47,7 +52,7 @@
 }
 
 .addPost {
-  font-family: 'Poiret One', cursive;
+  font-family: Roboto, serif;
   font-size: 12px;
   height: 25px;
   background-color: #007AFF;
@@ -55,14 +60,14 @@
   color: #fff;
   border: none;
   padding: 0px 15px 1px;
-  opacity: 0.7;
+  /*opacity: 0.7;*/
   cursor: pointer;
   margin-top: 12px;
   margin-right: 20px;
 }
 
 .addPost:hover {
-  opacity: 1;
+  background-color: #0163cb;
 }
 
 .line {

@@ -20,7 +20,9 @@ const Modal = ({active, setActive, children, size, modalName, clear}) => {
         <div className={style.head}>
           <h2 className={style.header}>{modalName}</h2>
           <div className={style.close} onClick={() => {
-            clear()
+            if (clear) {
+              clear()
+            }
             setActive(false)
           }}>
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#354052">

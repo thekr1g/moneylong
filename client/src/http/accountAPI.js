@@ -10,3 +10,8 @@ export const fetchAccounts = async (userId) => {
   return data
 }
 
+export const updateAccount = async (id, name, color, money, accountTypeId) => {
+  const {data} = await $authHost.put('api/account', {id, name, color, money, accountTypeId})
+  return data
+}
+

@@ -7,7 +7,7 @@ class AccountController {
     try {
       const {name, color, money, userId, accountTypeId} = req.body
       await Account.create({name, color, money, userId, accountTypeId})
-      const accounts = await Account.findAll()
+      const accounts = await Account.findAll({order: [['createdAt', 'ASC']]})
       return res.json(accounts)
     } catch (e) {
       next(ApiError.badRequest(e.message))
@@ -17,7 +17,7 @@ class AccountController {
   async getAll(req, res, next) {
     try {
       let {userId} = req.query
-      const accounts = await Account.findAll({where: {userId}})
+      const accounts = await Account.findAll({order: [['createdAt', 'ASC']], where: {userId}})
       return res.json(accounts)
     } catch (e) {
       return next(ApiError.badRequest(e.message))
@@ -27,7 +27,7 @@ class AccountController {
 
   async update(req, res, next) {
     try {
-      const {id, name, color, money} = req.body
+      const {id, name, color, money, accountTypeId} = req.body
       let changes
       if (name) {
         changes = {name}
@@ -38,11 +38,14 @@ class AccountController {
       if (money) {
         changes = {...changes, money}
       }
+      if (accountTypeId) {
+        changes = {...changes, accountTypeId}
+      }
 
       const account = await Account.findOne({where: {id}})
       await  account.update(changes)
 
-      const accounts = await Account.findAll()
+      const accounts = await Account.findAll({order: [['createdAt', 'ASC']]})
       return res.json(accounts)
     } catch (e) {
       return next(ApiError.badRequest(e.message))
@@ -53,7 +56,7 @@ class AccountController {
     try {
       let {id} = req.query
       await Account.destroy({where: {id}})
-      const accounts = await Account.findAll()
+      const accounts = await Account.findAll({order: [['createdAt', 'ASC']]})
       return res.json(accounts)
     } catch (e) {
       return next(ApiError.badRequest(e.message))
