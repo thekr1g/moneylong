@@ -1,4 +1,4 @@
-const { Account} = require('../models/models')
+const { Account, Record} = require('../models/models')
 const ApiError = require('../error/ApiError')
 
 
@@ -92,6 +92,7 @@ class AccountController {
   async delete(req, res, next) {
     try {
       let {id} = req.query
+      await Record.destroy({where: {accountId: id}})
       await Account.destroy({where: {id}})
       const accounts = await Account.findAll({order: [['createdAt', 'ASC']]})
       return res.json(accounts)

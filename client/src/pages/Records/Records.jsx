@@ -51,13 +51,14 @@ const Records = () => {
     fetchCategory().then(data => {
       dispatch(setCategoryAC(data))
     })
-    fetchRecord().then(data => {
+    fetchRecord(user.id, ).then(data => {
       dispatch(setRecordAC(data))
     })
     fetchAccountType().then(data => {
       dispatch(setAccountTypesAC(data))
     }).finally(() => setLoading(false))
   }, [])
+
 
   if (loading) {
     return <Spinner/>

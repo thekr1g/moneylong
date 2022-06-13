@@ -1,11 +1,15 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import style from './AccountCard.module.css'
+import {useNavigate} from 'react-router-dom';
+import {ACCOUNT_PAGE_ROUTE} from '../../utils/const';
 
 const AccountCard = ({account}) => {
   const types = useSelector(state => state.accountType.accountTypes)
+  const navigate = useNavigate()
+  const fmtSum =  new Intl.NumberFormat('ru-RU').format(account.money);
   return (
-    <div className={style.card}>
+    <div className={style.card} onClick={() => {navigate(ACCOUNT_PAGE_ROUTE + '/' + account.id)}}>
       {types.map(t => {
         if (t.id === account.accountTypeId) {
           return (
@@ -17,7 +21,7 @@ const AccountCard = ({account}) => {
               <div className={style.account}>
                 <div className={style.name}>{t.name}</div>
               </div>
-              <div className={style.money} style={{color: '#282c34'}}>{account.money} ₽</div>
+              <div className={style.money} style={{color: '#282c34'}}>{fmtSum} ₽</div>
             </div>
           )
         }

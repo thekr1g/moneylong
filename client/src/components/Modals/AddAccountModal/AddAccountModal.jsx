@@ -48,7 +48,6 @@ const AddAccountModal = ({active, setActive, isEdit, name, color, type, sum, acc
         })
         types.map(t => {
           if (t.id === type.id) {
-            console.log('dsds')
             setSelectedType(t)
           }
         })

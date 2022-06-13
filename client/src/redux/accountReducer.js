@@ -1,4 +1,5 @@
 const SET_ACCOUNTS = 'SET_ACCOUNTS'
+const SET_ACCOUNT = 'SET_ACCOUNT'
 
 let initialState = {
   colors: [
@@ -38,18 +39,22 @@ let initialState = {
     {id: 31, color: '#607D8B'},
     {id: 32, color: '#90A4AE'},
   ],
-  accounts: []
+  accounts: [],
+  account: {}
 }
 
 const accountReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ACCOUNTS:
       return {...state, accounts: action.acc}
+    case SET_ACCOUNT:
+      return {...state, account: action.acc}
     default:
       return state
   }
 }
 
 export const setAccountsAC = (acc) => ({type: SET_ACCOUNTS, acc})
+export const setAccountAC = (acc) => ({type: SET_ACCOUNT, acc})
 
 export default accountReducer

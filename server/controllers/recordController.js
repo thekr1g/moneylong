@@ -21,12 +21,17 @@ class RecordController {
 
   async getAll(req, res, next) {
     try {
-      let {limit, page} = req.query
+      let {limit, page, userId, accountId} = req.query
       page = page || 1
       limit = limit || 20
       let offset = page * limit - limit
+      let records = []
+      if (accountId) {
+        records = await Record.findAll({order: [['createdAt', 'DESC']], where: {userId, accountId}, limit, offset})
+      } else {
+        records = await Record.findAll({order: [['createdAt', 'DESC']], where: {userId}, limit, offset})
+      }
 
-      const records = await Record.findAll({order: [['createdAt', 'DESC']], limit, offset})
       return res.json(records)
     } catch (e) {
       return next(ApiError.badRequest(e.message))

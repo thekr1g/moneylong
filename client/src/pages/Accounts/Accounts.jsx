@@ -96,7 +96,7 @@ const Accounts = () => {
       </div>
       <div className={style.main}>
         <div>
-          <div className={style.accounts}>Записи</div>
+          <div className={style.accounts}>Счета</div>
           <button className={style.addButton} onClick={() => {
             setActive(true)
           }}>+ Добавить

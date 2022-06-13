@@ -12,6 +12,7 @@ const RecordCard = ({record}) => {
   const accounts = useSelector(state => state.account.accounts)
   const [active, setActive] = useState(false)
   const dispatch = useDispatch()
+  const fmtSum =  new Intl.NumberFormat('ru-RU').format(record.money);
   const deleteClick = () => {
     deleteRecord(record.id).then(data => {
       dispatch(setRecordAC(data))
@@ -45,7 +46,7 @@ const RecordCard = ({record}) => {
                       )
                     }
                   })}
-                  {record.type === '-' ? <div className={style.money} style={{color: '#F44336'}}>-{record.money} ₽</div>: <div className={style.money} style={{color: '#14C58B'}}>+{record.money} ₽</div>}
+                  {record.type === '-' ? <div className={style.money} style={{color: '#F44336'}}>-{fmtSum} ₽</div>: <div className={style.money} style={{color: '#14C58B'}}>+{fmtSum} ₽</div>}
                 </div>
               )
             }

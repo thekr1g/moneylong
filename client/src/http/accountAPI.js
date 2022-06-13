@@ -10,6 +10,11 @@ export const fetchOneAccount = async (id) => {
   return data
 }
 
+export const deleteAccount = async (id) => {
+  const {data} = await $authHost.delete('api/account', {params: {id}})
+  return data
+}
+
 export const fetchAccounts = async (userId, filter) => {
   const {data} = await $authHost.get('api/account', {params: {userId, filter}})
   return data
