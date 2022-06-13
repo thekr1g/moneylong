@@ -9,7 +9,7 @@
 }
 
 .slogan {
-  font-family: 'Poiret One', cursive;
+  font-family: Roboto, serif;
   font-size:40px;
   width: 360px;
   color: white;
@@ -21,13 +21,13 @@
 
 .head {
   font-size: 17px;
-  margin-top: 10px;
-  font-family: 'Poiret One', cursive;
+  margin-top: 15px;
+  font-family: Roboto, serif;
 }
 
 .input {
-  font-family: 'Poiret One', cursive;
-  font-weight: 300;
+  font-family: Roboto, serif;
+  font-weight: 400;
   width: 400px;
   font-size: 17px;
   padding-top: 7px;
@@ -51,14 +51,14 @@
 }
 
 .errorText {
-  font-family: 'Poiret One', cursive;
+  font-family: Roboto, serif;
   margin-top: 10px;
   color: red;
 }
 
 .no {
   color: #282c34;
-  font-family: 'Poiret One', cursive;
+  font-family: Roboto, serif;
   /*margin-left: 35px;*/
   text-align: center;
   margin-top: 15px;
@@ -66,7 +66,7 @@
 
 .enter {
   font-size: 25px;
-  font-family: 'Poiret One', cursive;
+  font-family: Roboto, serif;
   font-weight: 600;
   color: #282c34;
   margin-bottom: 15px;
@@ -83,7 +83,7 @@
 }
 
 .enterButton {
-  font-family: 'Poiret One', cursive;
+  font-family: Roboto, serif;
   font-size: 17px;
   margin-top: 30px;
   width: 100%;

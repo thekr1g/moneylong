@@ -6,7 +6,7 @@ import AccountTypes from './AccountTypes/AccountTypes';
 import {createAccount, updateAccount} from '../../../http/accountAPI';
 import {setAccountsAC} from '../../../redux/accountReducer';
 
-const AddAccountModal = ({active, setActive, isEdit, name, color, type, sum, accountId}) => {
+const AddAccountModal = ({active, setActive, isEdit, name, color, type, sum, accountId, filter}) => {
 
   const user = useSelector(state => state.user.user)
   const colors = useSelector(state => state.account.colors)
@@ -70,7 +70,7 @@ const AddAccountModal = ({active, setActive, isEdit, name, color, type, sum, acc
           setActive(false)
         })
       } else {
-        createAccount(selectedName, selectedColor.color, user.id, selectedSum, selectedType.id ).then(data => {
+        createAccount(selectedName, selectedColor.color, user.id, selectedSum, selectedType.id , filter).then(data => {
           dispatch(setAccountsAC(data))
           setActive(false)
           clear()
@@ -91,7 +91,7 @@ const AddAccountModal = ({active, setActive, isEdit, name, color, type, sum, acc
       <div className={style.modal}>
         <div className={style.form}>
           <div style={{display: 'flex', width: '100%', marginTop: '20px'}}>
-            <div>
+            <div style={{width: "100%"}}>
               <div className={style.head}>Название</div>
               <input className={style.input} value={selectedName} type="text" placeholder={'Название счета'} onChange={e => setSelectedName(e.target.value)}/>
             </div>

@@ -12,6 +12,7 @@ const Category = sequelize.define('category', {
   id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
   name: {type: DataTypes.STRING},
   icon: {type: DataTypes.STRING},
+  color: {type: DataTypes.STRING},
 })
 
 const Record = sequelize.define('record', {

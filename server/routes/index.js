@@ -9,7 +9,7 @@ const recordRouter = require('./recordRouter')
 router.use('/user', userRouter)
 router.use('/account', accountRouter)
 router.use('/accountType', accountTypeRouter )
-// router.use('/category', categoryRouter)
-// router.use('/record', recordRouter)
+router.use('/category', categoryRouter)
+router.use('/record', recordRouter)
 
 module.exports = router

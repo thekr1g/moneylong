@@ -1,4 +1,5 @@
 import {
+  ACCOUNT_PAGE_ROUTE,
   ACCOUNTS_ROUTE,
   ANALYTICS_ROUTE,
   DASHBOARD_ROUTE,
@@ -12,6 +13,7 @@ import Settings from '../pages/Settings/Settings';
 import Analytics from '../pages/Analytics/Analytics';
 import Records from '../pages/Records/Records';
 import Login from '../pages/Login/Login';
+import AccountPage from '../pages/AccountPage/AccountPage';
 
 export const loginRoutes = [
   {
@@ -33,7 +35,11 @@ export const loginRoutes = [
   {
     path: RECORDS_ROUTE,
     element: <Records/>,
-  }
+  },
+  {
+    path: ACCOUNT_PAGE_ROUTE + '/:id',
+    element: <AccountPage/>,
+  },
 
 ]
 export const routes = [

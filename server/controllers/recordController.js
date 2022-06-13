@@ -12,7 +12,7 @@ class RecordController {
 
       const {name, accountId, categoryId, type, money, userId} = req.body
       await Record.create({name, accountId, categoryId, type, money, userId})
-      const records = await Record.findAll({limit, offset})
+      const records = await Record.findAll({order: [['createdAt', 'DESC']], limit, offset})
       return res.json(records)
     } catch (e) {
       next(ApiError.badRequest(e.message))
@@ -26,7 +26,7 @@ class RecordController {
       limit = limit || 20
       let offset = page * limit - limit
 
-      const records = await Record.findAll({limit, offset})
+      const records = await Record.findAll({order: [['createdAt', 'DESC']], limit, offset})
       return res.json(records)
     } catch (e) {
       return next(ApiError.badRequest(e.message))
@@ -62,7 +62,7 @@ class RecordController {
       const record = await Record.findOne({where: {id}})
       await  record.update(changes)
 
-      const records = await Record.findAll({limit, offset})
+      const records = await Record.findAll({order: [['createdAt', 'DESC']], limit, offset})
       return res.json(records)
     } catch (e) {
       return next(ApiError.badRequest(e.message))
@@ -74,10 +74,19 @@ class RecordController {
       let {id, limit, page} = req.query
       page = page || 1
       limit = limit || 20
+      let money
       let offset = page * limit - limit
-      await Account.destroy({where: {id}})
-      const accounts = await Account.findAll({limit, offset})
-      return res.json(accounts)
+      const record = await Record.findOne({where: {id}})
+      const account = await Account.findOne({where: {id: record.accountId}})
+      if (record.type === '+') {
+        money = Number(account.money) - Number(record.money)
+      } else if (record.type === '-') {
+        money = Number(account.money) + Number(record.money)
+      }
+      account.update({money})
+      await Record.destroy({where: {id}})
+      const records = await Record.findAll({order: [['createdAt', 'DESC']] ,limit, offset})
+      return res.json(records)
     } catch (e) {
       return next(ApiError.badRequest(e.message))
     }

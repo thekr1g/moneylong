@@ -17,12 +17,12 @@
 .header {
   margin-bottom: 0;
   font-size: 18px;
-  font-weight: 300;
   width: 436px;
   cursor: default;
   margin-top: 0;
   color: #354052;
-  font-family: 'Poiret One', cursive;
+  font-family: Roboto, serif;
+  font-weight: 500;
 }
 
 .head {
@@ -74,17 +74,17 @@
   background-color: #fff;
   transform: scale(0.5);
   transition: 0.4s all;
-  width: 900px;
+  width: 600px;
   border-radius: 7px;
 
 }
 
 .bigModalContentActive {
   background-color: #fff;
-  width: 900px;
+  width: 600px;
   transform: scale(1);
   transition: 0.4s all;
-  max-height: 900px;
+  max-height: 1080px;
   border-radius: 7px;
 }
 

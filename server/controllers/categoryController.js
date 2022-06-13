@@ -5,8 +5,8 @@ const {Category} = require('../models/models');
 class CategoryController {
   async create(req, res, next) {
     try {
-      const {name, icon} = req.body
-      await Category.create({name, icon})
+      const {name, icon, color} = req.body
+      await Category.create({name, icon, color})
       const category = await Category.findAll()
       return res.json(category)
     } catch (e) {

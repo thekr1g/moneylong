@@ -24,7 +24,6 @@
 }
 
 .li a {
-  color: #7F8FA4;
   font-weight: 500;
 }
 
@@ -35,7 +34,13 @@
 
 .navLink {
   text-decoration: none;
-  color: #282c34;
+  color: #7F8FA4;
+
+}
+
+.activeLink {
+  text-decoration: none;
+  color: #14C58B;
 }
 
 .header {

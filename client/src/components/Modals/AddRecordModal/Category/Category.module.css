@@ -1,0 +1,28 @@
+.category {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.head {
+  margin-top: 20px;
+  font-family: Roboto, serif;
+  font-size: 17px;
+  margin-left: 3px;
+  color: #282c34;
+  font-weight: 500;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.icon span {
+  font-size: 19px;
+  color: white;
+  margin-top: 4px;
+  margin-left: 4px;
+}

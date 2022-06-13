@@ -1,7 +1,7 @@
 .input {
-  font-family: 'Poiret One', cursive;
-  font-weight: 300;
-  /*width: 250px;*/
+  font-family: Roboto, serif;
+  font-weight: 400;
+  /*width: 3000px;*/
   width: 100%;
   font-size: 17px;
   padding-top: 7px;
@@ -23,7 +23,7 @@
 }
 
 .head {
-  font-family: 'Poiret One', cursive;
+  font-family: Roboto, serif;
   font-size: 17px;
   margin-left: 3px;
   color: #282c34;
@@ -59,13 +59,13 @@
 }
 
 .errorText {
-  font-family: 'Poiret One', cursive;
+  font-family: Roboto, serif;
   margin-top: 10px;
   color: red;
 }
 
 .saveButton {
-  font-family: 'Poiret One', cursive;
+  font-family: Roboto, serif;
   font-size: 17px;
   margin-top: 30px;
   width: 100%;

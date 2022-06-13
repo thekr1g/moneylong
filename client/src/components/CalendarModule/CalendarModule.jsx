@@ -12,15 +12,14 @@ const CalendarModule = () => {
   console.log(date.toLocaleString("ru", options))
 
   return (
-    <div className='app'>
-      <h1 className='text-center'>React Calendar</h1>
+    <div>
       <div className='calendar-container'>
         <Calendar onChange={setDate} value={date} maxDate={new Date()} showNeighboringMonth={false}/>
       </div>
-      <p className='text-center'>
-        <span className='bold'>Selected Date:</span>{' '}
-        {date.toLocaleString("ru", options)}
-      </p>
+      {/*<p className='text-center'>*/}
+      {/*  <span className='bold'>Selected Date:</span>{' '}*/}
+      {/*  {date.toLocaleString("ru", options)}*/}
+      {/*</p>*/}
     </div>
   );
 };
