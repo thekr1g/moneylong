@@ -5,8 +5,8 @@ export const createRecord = async ( type, userId, money, accountId, categoryId) 
   return data
 }
 
-export const fetchRecord = async (userId, accountId) => {
-  const {data} = await $authHost.get('api/record', {params: {userId, accountId}})
+export const fetchRecord = async (userId, accountId, limit, page) => {
+  const {data} = await $authHost.get('api/record', {params: {userId, accountId, limit, page}})
   return data
 }
 

@@ -1,16 +1,9 @@
-.half-background{
 
-    border: 1px solid #69F0AE;
-    background-color: #007AFF;
-    background-position: 0 0;
-    background-size: 50vw 100%;
-    background-repeat: no-repeat;
-}
-.half-background:before{
-    content: '';
-    position: absolute; top: 0; left: 0;
-    width: 50%;
-    height: 100%;
-    background: #69F0AE;
-    z-index: -1;
+.head {
+  font-size: 30px;
+  font-weight: 700;
+  color: #282c34;
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }

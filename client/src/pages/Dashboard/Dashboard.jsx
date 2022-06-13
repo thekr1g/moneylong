@@ -12,6 +12,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {setAccountTypesAC} from '../../redux/accountTypeReducer';
 import {fetchAccounts} from '../../http/accountAPI';
 import {setAccountsAC} from '../../redux/accountReducer';
+import AccountPanel from './AccountPanel/AccountPanel';
+import RecordPanel from './RecordPanel/RecordPanel';
+import {fetchRecord} from '../../http/recordAPI';
+import {setRecordAC} from '../../redux/recordReducer';
+import {fetchCategory} from '../../http/categoryAPI';
+import {setCategoryAC} from '../../redux/categoryReducer';
 
 const Dashboard = () => {
   const user = useSelector(state => state.user.user)
@@ -23,6 +29,12 @@ const Dashboard = () => {
   useEffect(() => {
     fetchAccounts(user.id).then(data => {
       dispatch(setAccountsAC(data))
+    })
+    fetchCategory().then(data => {
+      dispatch(setCategoryAC(data))
+    })
+    fetchRecord(user.id, null, 5, 1).then(data => {
+      dispatch(setRecordAC(data))
     })
     fetchAccountType().then(data => {
       dispatch(setAccountTypesAC(data))
@@ -47,9 +59,9 @@ const Dashboard = () => {
         <AddButton onClick={setAddAccountActive}/>
       </div>
       <div style={{display: 'flex'}} >
-        <Panel name={'Тенденция баланса'}/>
-        <Panel name={'Движение средств'}/>
-        <Panel name={'Структура расходов'}/>
+        <AccountPanel/>
+        <RecordPanel/>
+        {/*<Panel name={'Структура расходов'}/>*/}
 
       </div>
 
