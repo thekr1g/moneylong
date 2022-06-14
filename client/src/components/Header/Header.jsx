@@ -5,7 +5,7 @@ import {NavLink} from 'react-router-dom';
 import {
   ACCOUNTS_ROUTE,
   ANALYTICS_ROUTE,
-  DASHBOARD_ROUTE,
+  DASHBOARD_ROUTE, IMPORT_ROUTE,
   RECORDS_ROUTE
 } from '../../utils/const';
 import Profile from './Profile/Profile';
@@ -36,6 +36,9 @@ const Header = () => {
         </li>
         <li className={style.li}>
           <NavLink to={ANALYTICS_ROUTE} className={SelectedLink()}>Аналитика</NavLink>
+        </li>
+        <li className={style.li}>
+          <NavLink to={IMPORT_ROUTE} className={SelectedLink()}>Импорт</NavLink>
         </li>
       </ul>
       <div className={style.right}>

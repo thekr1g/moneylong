@@ -42,7 +42,7 @@ const Login = () => {
           navigate(DASHBOARD_ROUTE)
         }
       } else {
-        if (email === '' || password === '' || name === '') {
+        if (email === '' || password === '' ) {
           setErrorText('Пожалуйста, заполните все поля')
           setLoginError(true)
         } else {
@@ -70,15 +70,6 @@ const Login = () => {
           <div className={style.form}>
             <div className={style.reg}>
               <div className={style.enter}>{ isLogin ? 'Войти' : 'Зарегистрироваться'}</div>
-              {isLogin ? null :
-                <div>
-                  <div className={style.head}>Имя</div>
-                  <input className={style.input} type="text" value={name} onChange={e => {
-                    setName(e.target.value)
-                    setLoginError(false)
-                  }}/>
-                </div>
-              }
               <div>
                 <div className={style.head}>E-mail</div>
                 <input className={style.input} value={email} type="text" onChange={e => {

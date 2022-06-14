@@ -10,7 +10,7 @@ import category from './Category/Category';
 import {fetchAccounts, updateAccount} from '../../../http/accountAPI';
 import {setAccountsAC} from '../../../redux/accountReducer';
 
-const AddRecordModal = ({active, setActive, isEdit, recData}) => {
+const AddRecordModal = ({active, setActive, isEdit, recData, isImport, categ, money}) => {
   const user = useSelector(state => state.user.user)
   const [selectedSum , setSelectedSum] = useState(0)
   const [display, setDisplay] = useState(false)
@@ -65,7 +65,14 @@ const AddRecordModal = ({active, setActive, isEdit, recData}) => {
           }
         })
 
-      } else {
+      } else if (isImport === true) {
+        setSelectedCategory(categ)
+        setRecAdd('-')
+        setSelectedSum(money)
+        setCurrentAccount(accounts[0])
+
+      }
+      else {
         setCurrentAccount(accounts[0])
       }
     }

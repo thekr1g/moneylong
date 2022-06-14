@@ -14,7 +14,7 @@ const AccountPanel = () => {
       </div>
       <div style={{marginTop: '50px'}}>
         {accounts.map(a => (
-          <AccPanCard acc={a}/>
+          <AccPanCard acc={a} key={a.id}/>
           )
         )}
       </div>

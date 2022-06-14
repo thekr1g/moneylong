@@ -5,7 +5,7 @@ import {BrowserRouter} from 'react-router-dom';
 import 'material-icons/iconfont/material-icons.css';
 import './App.css'
 import Spinner from './components/Spinner/Spinner';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {check} from './http/userAPI';
 import {setIsAuthAC, setUserAC} from './redux/userReducer';
 

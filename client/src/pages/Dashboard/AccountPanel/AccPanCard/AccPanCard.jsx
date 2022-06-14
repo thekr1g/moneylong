@@ -13,7 +13,7 @@ const AccPanCard = ({acc}) => {
       {types.map(t => {
         if (t.id === acc.accountTypeId) {
           return (
-            <div style={{display: 'flex'}}>
+            <div style={{display: 'flex'}} key={t.id}>
               <div className={style.icon} style={{backgroundColor: acc.color}}>
                 <span className="material-icons-round">{t.icon}</span>
               </div>
