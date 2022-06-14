@@ -8,6 +8,8 @@
   color: #282c34;
   height: 350px;
   width: 600px;
+  max-height: 345px;
+  overflow: hidden;
   margin-top: 60px;
   margin-left: 10px;
 }

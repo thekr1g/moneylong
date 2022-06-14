@@ -112,4 +112,12 @@
   color: #fff;
   border-radius: 40px;
   cursor: pointer;
+  box-sizing: border-box;
 }
+
+/*.addButton:hover {*/
+/*  background-color: #fff;*/
+/*  color: #14C58B;*/
+/*  border: 1px solid #14C58B;*/
+/*  box-sizing: border-box;*/
+/*}*/

@@ -6,6 +6,8 @@
   border-radius: 7px;
   color: #282c34;
   width: 100%;
+  max-height: 345px;
+  overflow: hidden;
   margin-top: 60px;
   margin-left: 10px;
 }
@@ -15,11 +17,11 @@
   margin-left: 15px;
   margin-top: 10px;
 
-  position: fixed;
+  position: absolute;
 }
 .line{
   display: flex;
-  position: fixed;
+  position: absolute;
   padding-top: 40px;
   width: 640px;
   border-bottom: 1px solid #a2b0c5;

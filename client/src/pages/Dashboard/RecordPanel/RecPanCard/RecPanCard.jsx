@@ -12,7 +12,7 @@ const RecPanCard = ({rec}) => {
       {categories.map(c => {
         if (c.id === rec.categoryId) {
           return (
-            <div style={{display: 'flex'}}>
+            <div style={{display: 'flex'}} key={c.id}>
               <div className={style.icon} style={{backgroundColor: c.color}}>
                 <span className="material-icons-round">{c.icon}</span>
               </div>

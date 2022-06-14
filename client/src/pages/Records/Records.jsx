@@ -13,16 +13,19 @@ import {setCategoryAC} from '../../redux/categoryReducer';
 import {fetchRecord} from '../../http/recordAPI';
 import {setRecordAC} from '../../redux/recordReducer';
 import RecordsList from './RecordsList/RecordsList';
+import {useNavigate} from 'react-router-dom';
+import {IMPORT_ROUTE} from '../../utils/const';
 
 
 const Records = () => {
   const user = useSelector(state => state.user.user)
   const [loading, setLoading] = useState(true)
-  const [selectedFilter, setSelectedFilter] = useState('Последние 7 дней')
+  const [selectedFilter, setSelectedFilter] = useState('Последние 30 дней')
   const [display, setDisplay] = useState(false);
   const wrapperRef = useRef(null);
   const [active, setActive] = useState(false)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleClickOutside = event => {
     const {current: wrap} = wrapperRef;
@@ -78,13 +81,13 @@ const Records = () => {
         </div>
         {display && (
           <div className={style.period}>
-            <div className={selectedFilter === 'Последние 7 дней' ? style.filterBlockActive : style.filterBlock}
+            <div className={selectedFilter === 'Сегодня' ? style.filterBlockActive : style.filterBlock}
                  onClick={() => {
-                   if (selectedFilter !== 'Последние 7 дней') {
-                     setSelectedFilter('Последние 7 дней')
+                   if (selectedFilter !== 'Сегодня') {
+                     setSelectedFilter('Сегодня')
                      setDisplay(false)
                    }
-                 }}>Последние 7 дней
+                 }}>Сегодня
             </div>
             <div className={selectedFilter === 'Последние 30 дней' ? style.filterBlockActive : style.filterBlock}
                  onClick={() => {
@@ -94,13 +97,13 @@ const Records = () => {
                    }
                  }}>Последние 30 дней
             </div>
-            <div className={selectedFilter === 'Последние 90 дней' ? style.filterBlockActive : style.filterBlock}
+            <div className={selectedFilter === 'Все время' ? style.filterBlockActive : style.filterBlock}
                  onClick={() => {
-                   if (selectedFilter !== 'Последние 90 дней') {
-                     setSelectedFilter('Последние 90 дней')
+                   if (selectedFilter !== 'Все время') {
+                     setSelectedFilter('Все время')
                      setDisplay(false)
                    }
-                 }}>Последние 90 дней
+                 }}>Все время
             </div>
           </div>
         )}
@@ -109,9 +112,10 @@ const Records = () => {
         <div>
           <div className={style.records}>Записи</div>
           <button className={style.addButton} onClick={() => {setActive(true)}}>+ Добавить</button>
+          <button className={style.addButton} style={{fontSize: '15px'}} onClick={() => navigate(IMPORT_ROUTE)}>+ Добавить фото чека</button>
         </div>
         <div style={{marginTop: '30px'}}>
-          <RecordsList/>
+          <RecordsList filter={selectedFilter}/>
         </div>
       </div>
     </div>

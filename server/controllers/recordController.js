@@ -7,7 +7,7 @@ class RecordController {
     try {
       let {limit, page} = req.query
       page = page || 1
-      limit = limit || 20
+      limit = limit || 50
       let offset = page * limit - limit
 
       const {name, accountId, categoryId, type, money, userId} = req.body
@@ -23,7 +23,7 @@ class RecordController {
     try {
       let {limit, page, userId, accountId} = req.query
       page = page || 1
-      limit = limit || 20
+      limit = limit || 50
       let offset = page * limit - limit
       let records = []
       if (accountId) {
@@ -44,7 +44,7 @@ class RecordController {
 
       let {id, name, accountId, categoryId, type, money, limit, page} = req.body
       page = page || 1
-      limit = limit || 20
+      limit = limit || 50
       let offset = page * limit - limit
 
       let changes
@@ -78,7 +78,7 @@ class RecordController {
     try {
       let {id, limit, page} = req.query
       page = page || 1
-      limit = limit || 20
+      limit = limit || 50
       let money
       let offset = page * limit - limit
       const record = await Record.findOne({where: {id}})

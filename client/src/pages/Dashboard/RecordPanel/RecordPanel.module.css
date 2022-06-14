@@ -8,17 +8,19 @@
   width: 100%;
   margin-top: 60px;
   margin-left: 10px;
+  max-height: 345px;
+  overflow: hidden;
 }
 
 .text {
   font-size: 18px;
   margin-left: 15px;
   margin-top: 10px;
-  position: fixed;
+  position: absolute;
 }
 .line{
   display: flex;
-  position: fixed;
+  position: absolute;
   padding-top: 40px;
   width: 640px;
   border-bottom: 1px solid #a2b0c5;

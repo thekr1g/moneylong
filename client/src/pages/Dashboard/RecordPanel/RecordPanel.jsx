@@ -13,7 +13,7 @@ const RecordPanel = () => {
       </div>
       <div style={{marginTop: '50px'}}>
         {records.map(r => (
-            <RecPanCard rec={r}/>
+            <RecPanCard rec={r} key={r.id}/>
           )
         )}
       </div>

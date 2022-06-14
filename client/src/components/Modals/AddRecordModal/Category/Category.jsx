@@ -24,7 +24,7 @@ const Category = ({setCategory, category}) => {
       </div>
       {
         display && (
-          <div className={style.options}>
+          <div className={styles.options}>
             {categories.map(a => (
               <div key={a.id} className={a.id === category.id ? style.typeBlockActive : style.typeBlock}
                    onClick={() => {
