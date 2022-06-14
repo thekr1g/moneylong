@@ -12,7 +12,7 @@ class RecordController {
 
       const {name, accountId, categoryId, type, money, userId} = req.body
       await Record.create({name, accountId, categoryId, type, money, userId})
-      const records = await Record.findAll({order: [['createdAt', 'DESC']], limit, offset})
+      const records = await Record.findAll({order: [['createdAt', 'DESC']],where: {userId}, limit, offset})
       return res.json(records)
     } catch (e) {
       next(ApiError.badRequest(e.message))
@@ -42,7 +42,7 @@ class RecordController {
   async update(req, res, next) {
     try {
 
-      let {id, name, accountId, categoryId, type, money, limit, page} = req.body
+      let {id, name, accountId, categoryId, type, money, limit, page, userId} = req.body
       page = page || 1
       limit = limit || 50
       let offset = page * limit - limit
@@ -67,7 +67,7 @@ class RecordController {
       const record = await Record.findOne({where: {id}})
       await  record.update(changes)
 
-      const records = await Record.findAll({order: [['createdAt', 'DESC']], limit, offset})
+      const records = await Record.findAll({order: [['createdAt', 'DESC']],where: {userId}, limit, offset})
       return res.json(records)
     } catch (e) {
       return next(ApiError.badRequest(e.message))
@@ -76,7 +76,7 @@ class RecordController {
 
   async delete(req, res, next) {
     try {
-      let {id, limit, page} = req.query
+      let {id, limit, page, userId} = req.query
       page = page || 1
       limit = limit || 50
       let money
@@ -90,7 +90,7 @@ class RecordController {
       }
       account.update({money})
       await Record.destroy({where: {id}})
-      const records = await Record.findAll({order: [['createdAt', 'DESC']] ,limit, offset})
+      const records = await Record.findAll({order: [['createdAt', 'DESC']],where: {userId} ,limit, offset})
       return res.json(records)
     } catch (e) {
       return next(ApiError.badRequest(e.message))

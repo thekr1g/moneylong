@@ -23,7 +23,7 @@ const AddRecordModal = ({active, setActive, isEdit, recData, isImport, categ, mo
 
   const click = () => {
     if (isEdit) {
-      updateRecord(recData.id, recAcc, selectedSum, currentAccount.id, selectedCategory.id).then(data => {
+      updateRecord(recData.id, recAcc, selectedSum, currentAccount.id, selectedCategory.id, user.id).then(data => {
         dispatch(setRecordAC(data))
         setActive(false)
         clear()
@@ -36,7 +36,7 @@ const AddRecordModal = ({active, setActive, isEdit, recData, isImport, categ, mo
       })
 
       const money = recAcc === '-' ? Number(currentAccount.money) - Number(selectedSum) : Number(currentAccount.money) + Number(selectedSum)
-      updateAccount(currentAccount.id, null, null, money).then(data => {
+      updateAccount(currentAccount.id, null, null, money, null, user.id).then(data => {
         dispatch(setAccountsAC(data))
       })
     }

@@ -5,7 +5,7 @@ const ApiError = require('../error/ApiError')
 class AccountController {
   async create(req, res, next) {
     try {
-      const {name, color, money, userId, accountTypeId, filter} = req.body
+      const {name, color, money, accountTypeId, filter, userId} = req.body
       let ord
       if (filter) {
         if (filter === 'A-Z') {
@@ -18,7 +18,7 @@ class AccountController {
         ord = [['createdAt', 'ASC']]
       }
       await Account.create({name, color, money, userId, accountTypeId})
-      const accounts = await Account.findAll({order: ord})
+      const accounts = await Account.findAll({order: ord, where: {userId}})
       return res.json(accounts)
     } catch (e) {
       next(ApiError.badRequest(e.message))
@@ -58,7 +58,7 @@ class AccountController {
 
   async update(req, res, next) {
     try {
-      const {id, name, color, money, accountTypeId} = req.body
+      const {id, name, color, money, accountTypeId, userId} = req.body
       let changes
       if (name) {
         changes = {name}
@@ -76,7 +76,7 @@ class AccountController {
       const account = await Account.findOne({where: {id}})
       await  account.update(changes)
 
-      const accounts = await Account.findAll({order: [['createdAt', 'ASC']]})
+      const accounts = await Account.findAll({order: [['createdAt', 'ASC']], where: {userId}})
       return res.json(accounts)
     } catch (e) {
       return next(ApiError.badRequest(e.message))
@@ -91,10 +91,10 @@ class AccountController {
 
   async delete(req, res, next) {
     try {
-      let {id} = req.query
+      let {id, userId} = req.query
       await Record.destroy({where: {accountId: id}})
       await Account.destroy({where: {id}})
-      const accounts = await Account.findAll({order: [['createdAt', 'ASC']]})
+      const accounts = await Account.findAll({order: [['createdAt', 'ASC']], where: {userId}})
       return res.json(accounts)
     } catch (e) {
       return next(ApiError.badRequest(e.message))
